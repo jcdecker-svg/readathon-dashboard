@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Broadmor Elementary 2025 Read‑a‑Thon — Dashboard Preview (v5)</title>
+  <style>
+    :root {
+      --brand-primary: #1a73e8;
+      --brand-secondary: #0ea5e9;
+      --brand-accent: #f59e0b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(to bottom, #fff, var(--bg));
+      color: var(--text);
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 12px 16px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 40px; height: 40px; border-radius: 12px; object-fit: cover; }
+    h1 { font-size: 18px; margin: 0; }
+    .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    nav { display: flex; gap: 6px; }
+    nav a {
+      text-decoration: none; color: var(--text); font-size: 14px; padding: 8px 10px;
+      border-radius: 10px; border: 1px solid transparent;
+    }
+    nav a:hover { background: #f3f4f6; }
+    .tabs { margin-top: 10px; }
+    .tablist { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #f3f4f6; border-radius: 14px; padding: 6px; }
+    .tab { text-align: center; padding: 8px 10px; border-radius: 10px; cursor: pointer; user-select: none; }
+    .tab[aria-selected="true"] { background: #fff; border: 1px solid var(--border); }
+    .tabpanel { display: none; margin-top: 16px; }
+    .tabpanel.active { display: block; }
+    .ticker {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 12px; margin-bottom: 12px;
+    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 12px; }
+    .stat .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .stat .value { font-size: 18px; font-weight: 700; margin-top: 4px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid1 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 12px; }
+    .card h3 { margin: 0 0 6px 0; font-size: 16px; }
+    .frame { position: relative; width: 100%; padding-top: 62.5%; border-radius: 12px; overflow: hidden; background: #fff; border: 1px solid var(--border); }
+    .frame > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .link { text-align: right; margin-top: 6px; }
+    .link a { font-size: 12px; color: #2563eb; text-decoration: none; }
+    .link a:hover { text-decoration: underline; }
+    .muted { color: var(--muted); font-size: 13px; }
+    @media (max-width: 1000px) {
+      .tablist { grid-template-columns: 1fr; }
+      .grid3, .grid2 { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="row">
+        <div class="brand">
+          <img src="./broadmor-logo.png" alt="Broadmor logo" />
+          <div>
+            <h1>Broadmor Elementary 2025 Read‑a‑Thon</h1>
+            <div class="sub">Home • Classroom Data • Achievements</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#home" data-goto="home">Home</a>
+          <a href="#classrooms" data-goto="classrooms">Classroom Data</a>
+          <a href="#awards" data-goto="awards">Achievements</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="tabs" aria-label="Views">
+      <div role="tablist" class="tablist">
+        <div role="tab" class="tab" id="tab-home" aria-controls="panel-home" aria-selected="true" tabindex="0">Home</div>
+        <div role="tab" class="tab" id="tab-classrooms" aria-controls="panel-classrooms" aria-selected="false" tabindex="0">Classroom Data</div>
+        <div role="tab" class="tab" id="tab-awards" aria-controls="panel-awards" aria-selected="false" tabindex="0">Achievements</div>
+      </div>
+
+      <!-- HOME TAB -->
+      <section role="tabpanel" id="panel-home" class="tabpanel active" aria-labelledby="tab-home">
+        <!-- Edit ticker messages inside TICKER_MESSAGES in the script below -->
+        <div class="ticker">
+          <div><strong>Announcements</strong></div>
+          <div id="tickerMsg" style="margin-top:6px;">Welcome to the Read‑a‑Thon!</div>
+        </div>
+
+        <!-- Global stat boxes — edit values directly here -->
+        <div class="stats">
+          <div class="stat"><div class="label">Total Minutes</div><div class="value">48,900</div></div>
+          <div class="stat"><div class="label">Students Participating</div><div class="value">270</div></div>
+          <div class="stat"><div class="label">Reading Achievements Met</div><div class="value">263</div></div>
+        </div>
+
+        <!-- 3x1 layout -->
+        <div class="grid3" style="margin-top:12px;">
+          <div class="card">
+            <h3>Total Minutes Read</h3>
+            <div class="frame">
+              <iframe title="Total Minutes Read"
+                      src="https://flo.uri.sh/visualisation/24962948/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/24962948/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+          <div class="card">
+            <h3>Minutes and Fundraising Scatterplot</h3>
+            <div class="frame">
+              <iframe title="Minutes vs Funds"
+                      src="https://flo.uri.sh/visualisation/25004763/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/25004763/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+          <div class="card">
+            <h3>Fundraising Goal Progress</h3>
+            <div class="frame">
+              <iframe title="Fundraising Goal"
+                      src="https://flo.uri.sh/visualisation/24962412/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/24962412/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLASSROOMS TAB -->
+      <section role="tabpanel" id="panel-classrooms" class="tabpanel" aria-labelledby="tab-classrooms">
+        <div class="grid2">
+          <div>
+            <div class="card">
+              <h3>Grade and Class Breakdowns — Reading</h3>
+              <div class="frame">
+                <iframe title="Grade & Class Reading"
+                        src="https://flo.uri.sh/visualisation/24962889/embed"
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                        allow="fullscreen; clipboard-read; clipboard-write"
+                        allowfullscreen></iframe>
+              </div>
+              <div class="link"><a href="https://public.flourish.studio/visualisation/24962889/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+            </div>
+
+            <div class="card" style="margin-top:12px;">
+              <h3>Top 5 Classes by Minutes</h3>
+              <div class="frame">
+                <iframe title="Top 5 Minutes"
+                        src="https://flo.uri.sh/visualisation/24963444/embed"
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                        allow="fullscreen; clipboard-read; clipboard-write"
+                        allowfullscreen></iframe>
+              </div>
+              <div class="link"><a href="https://public.flourish.studio/visualisation/24963444/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Grade and Class Breakdowns — Fundraising</h3>
+              <div class="frame">
+                <iframe title="Grade & Class Fundraising"
+                        src="https://flo.uri.sh/visualisation/24963199/embed"
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                        allow="fullscreen; clipboard-read; clipboard-write"
+                        allowfullscreen></iframe>
+              </div>
+              <div class="link"><a href="https://public.flourish.studio/visualisation/24963199/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+            </div>
+
+            <div class="card" style="margin-top:12px;">
+              <h3>Top 5 Classes by Funds Raised</h3>
+              <div class="frame">
+                <iframe title="Top 5 Funds"
+                        src="https://flo.uri.sh/visualisation/24963377/embed"
+                        loading="eager"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                        allow="fullscreen; clipboard-read; clipboard-write"
+                        allowfullscreen></iframe>
+              </div>
+              <div class="link"><a href="https://public.flourish.studio/visualisation/24963377/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS TAB -->
+      <section role="tabpanel" id="panel-awards" class="tabpanel" aria-labelledby="tab-awards">
+        <div class="grid1">
+          <div class="card">
+            <h3>Searchable Achievements and Awards</h3>
+            <div class="frame">
+              <iframe title="Achievements and Awards"
+                      src="https://flo.uri.sh/visualisation/25005484/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/25005484/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:12px;">
+          <div class="card">
+            <h3>Top Readers by Grade</h3>
+            <div class="frame">
+              <iframe title="Top Readers by Grade"
+                      src="https://flo.uri.sh/visualisation/24996026/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/24996026/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+          <div class="card">
+            <h3>Class Fundraising Gauges (By Class)</h3>
+            <div class="frame">
+              <iframe title="Class Gauges"
+                      src="https://flo.uri.sh/visualisation/25002840/embed"
+                      loading="eager"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      sandbox="allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                      allow="fullscreen; clipboard-read; clipboard-write"
+                      allowfullscreen></iframe>
+            </div>
+            <div class="link"><a href="https://public.flourish.studio/visualisation/25002840/" target="_blank" rel="noopener noreferrer">Open full view ↗</a></div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer style="text-align:center;color:#6b7280;font-size:12px;padding:24px 0 40px;">
+    Built with ❤️ for the PTA • Flourish embeds • Mobile & TV‑ready
+  </footer>
+
+  <script>
+    // === Edit your ticker messages here ===
+    const TICKER_MESSAGES = [
+      "16SEPT all the awards are given, keep going to reach your goals!",
+      "Goals: 120000 Minutes read and $30,000 raised, lets beat 2024!",
+      "\"The more that you read, the more things you will know. The more that you learn, the more places you'll go\" — Dr. Seuss "
+    ];
+    let idx = 0;
+    const el = document.getElementById('tickerMsg');
+    setInterval(() => { idx = (idx + 1) % TICKER_MESSAGES.length; el.textContent = TICKER_MESSAGES[idx]; }, 3500);
+
+    // Simple tabs behavior
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+    function activateTab(id) {
+      tabs.forEach(t => t.setAttribute('aria-selected', String(t.id === 'tab-' + id)));
+      panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + id));
+    }
+    tabs.forEach(t => {
+      t.addEventListener('click', () => activateTab(t.id.replace('tab-','')));
+      t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateTab(t.id.replace('tab-','')); } });
+    });
+    document.querySelectorAll('a[data-goto]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = a.getAttribute('data-goto');
+        activateTab(id);
+        document.querySelector('header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
