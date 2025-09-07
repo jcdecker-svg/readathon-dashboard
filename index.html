@@ -109,9 +109,9 @@
 
         <!-- Global stat boxes — edit values directly here -->
         <div class="stats">
-          <div class="stat"><div class="label">Total Minutes</div><div class="value">48,900</div></div>
-          <div class="stat"><div class="label">Students Participating</div><div class="value">270</div></div>
-          <div class="stat"><div class="label">Reading Achievements Met</div><div class="value">263</div></div>
+          <div class="stat"><div class="label">Number of Classes Guaranteed a Bobcat Visit</div><div class="value">9</div></div>
+          <div class="stat"><div class="label">Students Participating</div><div class="value">306</div></div>
+          <div class="stat"><div class="label">Reading Achievements Met</div><div class="value">376</div></div>
         </div>
 
         <!-- 3x1 layout -->
@@ -280,13 +280,13 @@
   <script>
     // === Edit your ticker messages here ===
     const TICKER_MESSAGES = [
-      "16SEPT all the awards are given, keep going to reach your goals!",
+      "16SEPT the final awards will be given, keep going to reach your goals!",
       "Goals: 120000 Minutes read and $30,000 raised, lets beat 2024!",
       "\"The more that you read, the more things you will know. The more that you learn, the more places you'll go\" — Dr. Seuss "
     ];
     let idx = 0;
     const el = document.getElementById('tickerMsg');
-    setInterval(() => { idx = (idx + 1) % TICKER_MESSAGES.length; el.textContent = TICKER_MESSAGES[idx]; }, 3500);
+    setInterval(() => { idx = (idx + 1) % TICKER_MESSAGES.length; el.textContent = TICKER_MESSAGES[idx]; }, 5500);
 
     // Simple tabs behavior
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
